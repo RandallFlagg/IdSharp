@@ -4,7 +4,7 @@
 
 .NET ID3 Tagging Library.
 
-A .NET Core version can be found @-> https://github.com/RandallFlagg/IdSharpCore
+A .NET Core version can be found @-> <https://github.com/RandallFlagg/IdSharpCore>
 
 ## Project Status
 
