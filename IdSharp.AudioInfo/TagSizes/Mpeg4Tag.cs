@@ -113,20 +113,20 @@ internal class Mpeg4Tag
 
             _atoms.Add(atom);
 
-            if (string.Compare(atomname, "mdat", true) == 0)
+            if (string.Equals(atomname, "mdat", StringComparison.OrdinalIgnoreCase))
             {
                 MdatAtomSize = atomsize;
             }
-            /*else if (String.Compare(atomname, "moov", true) == 0)
+            /*else if (string.Equals(atomname, "moov", StringComparison.OrdinalIgnoreCase))
             {
                 _moovpos = stream.Position - 8;
             }*/
-            /*else if (String.Compare(atomname, "udta", true) == 0)
+            /*else if (string.Equals(atomname, "udta", StringComparison.OrdinalIgnoreCase))
             {
                 _udtapos = stream.Position - 8;
                 _udtasize = atomsize;
             }*/
-            else if (string.Compare(atomname, "free", true) == 0)
+            else if (string.Equals(atomname, "free", StringComparison.OrdinalIgnoreCase))
             {
                 // we'd like a free under a moov
                 // so check for level = 1
@@ -138,7 +138,7 @@ internal class Mpeg4Tag
                         // until we hit a level 1
                         if (_atoms[i].level == 1)
                         {
-                            if (string.Compare(_atoms[i].name, "moov", true) == 0)
+                            if (string.Equals(_atoms[i].name, "moov", StringComparison.OrdinalIgnoreCase))
                             {
                                 if (atomsize > _freesize)
                                 {
@@ -159,7 +159,7 @@ internal class Mpeg4Tag
             // if it's a container atom, parse the contents of the atom
             foreach (var atomType in ATOM_TYPES)
             {
-                if (string.Compare(atomname, atomType, true) == 0)
+                if (string.Equals(atomname, atomType, StringComparison.OrdinalIgnoreCase))
                 {
                     ParseAtom(stream, stream.Position, offset + atomsize, level);
                     break;
@@ -167,7 +167,7 @@ internal class Mpeg4Tag
             }
 
             // meta atom contains tags and some other data
-            if (string.Compare(atomname, "meta", true) == 0)
+            if (string.Equals(atomname, "meta", StringComparison.OrdinalIgnoreCase))
             {
                 // read in meta atom
                 var atomdata = stream.Read(atomsize - 8);
@@ -190,7 +190,7 @@ internal class Mpeg4Tag
             } // if meta
 
             // mdhd has data for calculating playtime
-            if (string.Compare(atomname, "mdhd", true) == 0)
+            if (string.Equals(atomname, "mdhd", StringComparison.OrdinalIgnoreCase))
             {
                 stream.Seek(12, SeekOrigin.Current);
                 Frequency = stream.ReadInt32();
@@ -198,7 +198,7 @@ internal class Mpeg4Tag
             }
 
             // stsd has data for sample, channels and codec
-            if (string.Compare(atomname, "stsd", true) == 0)
+            if (string.Equals(atomname, "stsd", StringComparison.OrdinalIgnoreCase))
             {
                 var atomdata = stream.Read(atomsize - 8);
                 ParseStsdAtom(atomdata);
