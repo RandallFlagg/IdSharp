@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace IdSharp.Common.Utils;
 
@@ -10,12 +8,7 @@ namespace IdSharp.Common.Utils;
 /// </summary>
 public static class PathUtils
 {
-    private static readonly List<char> _invalidFileNameChars;
-
-    static PathUtils()
-    {
-        _invalidFileNameChars = new List<char>(Path.GetInvalidFileNameChars());
-    }
+    private static readonly List<char> _invalidFileNameChars = new (Path.GetInvalidFileNameChars());
 
     /// <summary>
     /// Gets a unique file name which does not exist based on the specified path.
@@ -96,7 +89,7 @@ public static class PathUtils
         {
             for (var i = 0; i < randomBytes.Length; i++)
             {
-                randomBytes[i] = (byte)rnd.Next(65, 91);
+                randomBytes[i] = (byte)RandomNumberGenerator.GetInt32(65, 91);
             }
 
             var randomString = Encoding.ASCII.GetString(randomBytes);

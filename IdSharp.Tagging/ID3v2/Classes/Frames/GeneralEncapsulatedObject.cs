@@ -112,7 +112,7 @@ internal sealed class GeneralEncapsulatedObject : Frame, IGeneralEncapsulatedObj
     {
         if (_encapsulatedObject == null || _encapsulatedObject.Length == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var frameData = new MemoryStream())
