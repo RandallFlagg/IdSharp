@@ -95,7 +95,6 @@ for (var i = 0; i < files.Length; i++)
                     break;
                 default:
                     throw new NotSupportedException($"Unknonw option: {id3v2.Header.TagVersion}");
-                    break;
             }
 
             if (id3v2.Header.TagVersion != _newTagVersion.Value)
@@ -181,7 +180,7 @@ bool ParseArguments(string[] args)
     {
         var arg = args[i];
 
-        if (arg.StartsWith("--"))
+        if (arg.StartsWith("--", StringComparison.Ordinal))
         {
             arg = arg.Substring(1);
         }
@@ -242,7 +241,7 @@ bool ParseArguments(string[] args)
             }
             else
             {
-                var message = arg.StartsWith("-")
+                var message = arg.StartsWith("-", StringComparison.Ordinal)
                     ? $"switch '{arg}' not recognized."
                     : $"'{arg}' not found.";
 
