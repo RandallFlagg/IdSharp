@@ -1,17 +1,33 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <RootNamespace>IdSharp.Tagging.Harness.WinForms</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <ForceDesignerDPIUnaware>true</ForceDesignerDPIUnaware>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <RootNamespace>IdSharp.Tagging.Harness.WinForms</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\IdSharp.AudioInfo\IdSharp.AudioInfo.csproj" />
     <ProjectReference Include="..\..\IdSharp.Common\IdSharp.Common.csproj" />
     <ProjectReference Include="..\..\IdSharp.Tagging\IdSharp.Tagging.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(OS)' != 'Windows_NT'">
+<!--    <ProjectReference Include="..\..\External\System.Windows.Forms\Mono.WebBrowser\Mono.WebBrowser.csproj" />-->
+<!--    <ProjectReference Include="..\..\External\System.Windows.Forms\System.Drawing.Design\System.Drawing.Design.csproj" />-->
+    <ProjectReference Include="..\..\..\External\System.Windows.Forms\System.Windows.Forms\System.Windows.Forms.csproj" />
+    <PackageReference Include="System.Resources.Extensions" />
   </ItemGroup>
 </Project>
