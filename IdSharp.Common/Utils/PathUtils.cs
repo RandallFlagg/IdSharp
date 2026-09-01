@@ -64,6 +64,11 @@ public static class PathUtils
                     throw new ArgumentException($"Parameter 'extension' cannot contain '{c}'", nameof(extension));
                 }
             }
+
+            if (extension.IndexOfAny(new[] { '?', '\\', ':' }) >= 0)
+            {
+                throw new ArgumentException("Parameter 'extension' contains a character that is invalid in a file name on at least one supported platform", nameof(extension));
+            }
         }
 
         var tempPath = Path.GetTempPath();

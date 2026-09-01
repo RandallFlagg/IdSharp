@@ -103,7 +103,7 @@ internal sealed class BasicLameTagReader
         Preset = (ushort)((_tag.Surround_Preset[0] << 8) + _tag.Surround_Preset[1] & 0x07FF);
 
         // Guess preset
-        PresetGuess = new PresetGuesser().GuessPreset(
+        var result = new PresetGuesser().GuessPreset(
             VersionStringNonLameTag, /*m_Tag.VersionString*/
             _tag.Bitrate,
             _tag.Quality,
@@ -111,8 +111,9 @@ internal sealed class BasicLameTagReader
             _tag.NoiseShaping,
             _tag.StereoMode,
             _tag.EncodingFlags_ATHType,
-            _tag.Lowpass,
-            out _isPresetGuessNonBitrate);
+            _tag.Lowpass);
+        PresetGuess = result.Preset;
+        _isPresetGuessNonBitrate = result.NonBitrate;
 
     }
 
