@@ -5,6 +5,13 @@ using IdSharp.Tagging.ID3v2.Frames.Items;
 
 namespace IdSharp.Tagging.ID3v2;
 
+// All enums in this file are public API. They use `byte` as the underlying type because:
+//   1. The ID3v2 specification stores these values in single bytes in the tag/file format
+//      (e.g., tag restrictions, text encoding flags, picture types are all 8-bit fields).
+//   2. Changing the underlying type is a binary-breaking change for compiled consumers
+//      and for any code that serializes/persists these values.
+#pragma warning disable CA1028
+
 /// <summary>
 /// The text encoding type used in a frame.
 /// </summary>
@@ -725,3 +732,4 @@ internal enum ChannelType : byte
     BackCenter,
     Subwoofer
 }
+#pragma warning restore CA1028
