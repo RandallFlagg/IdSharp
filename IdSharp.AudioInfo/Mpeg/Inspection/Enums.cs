@@ -1,6 +1,9 @@
 namespace IdSharp.AudioInfo.Mpeg.Inspection;
 
 // MPEG version codes
+// Duplicate values are intentional aliases (Mpeg1/Version1, Mpeg2/Version2, Mpeg25/Version25)
+// that expose both naming conventions for the same MPEG spec concept.
+#pragma warning disable CA1069
 internal enum MpegVersion : byte
 {
     Unknown = 1,
@@ -20,8 +23,12 @@ internal enum MpegVersion : byte
     Mpeg25 = 0,
     Version25 = 0,
 }
+#pragma warning restore CA1069
 
 // MPEG layer codes
+// Duplicate values are intentional aliases (LayerI/Layer1, LayerII/Layer2, LayerIII/Layer3)
+// that expose both naming conventions for the same MPEG layer concept.
+#pragma warning disable CA1069
 internal enum MpegLayer : byte
 {
     Unknown = 0,
@@ -41,6 +48,7 @@ internal enum MpegLayer : byte
     LayerIII = 1,
     Layer3 = 1
 }
+#pragma warning restore CA1069
 
 // Channel mode codes
 internal enum MpegChannel : byte
