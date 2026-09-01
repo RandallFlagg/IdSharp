@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -75,7 +76,7 @@ public static class Amazon
         }
 
         // remove common words
-        value = value.ToLower();
+        value = value.ToLower(CultureInfo.InvariantCulture);
 
         value = value.Replace(" the ", " ");
         value = value.Replace(" a ", " ");

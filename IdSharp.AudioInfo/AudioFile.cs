@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 using IdSharp.AudioInfo.Mpeg;
@@ -23,7 +24,7 @@ public static class AudioFile
             throw new ArgumentNullException(nameof(path));
         }
 
-        var ext = Path.GetExtension(path).ToLower();
+        var ext = Path.GetExtension(path).ToLower(CultureInfo.InvariantCulture);
         IAudioFile audioFile = null;
 
         if (ext == ".mp3" || ext == ".mp2")

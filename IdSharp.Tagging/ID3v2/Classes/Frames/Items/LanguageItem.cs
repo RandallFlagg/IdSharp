@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Globalization;
 
 namespace IdSharp.Tagging.ID3v2.Frames.Items;
 
@@ -17,7 +18,7 @@ internal sealed class LanguageItem : ILanguageItem
             _languageCode = value;
 
             string languageDisplay;
-            if (LanguageHelper.Languages.TryGetValue(_languageCode.ToLower(), out languageDisplay))
+            if (LanguageHelper.Languages.TryGetValue(_languageCode.ToLower(CultureInfo.InvariantCulture), out languageDisplay))
             {
                 LanguageDisplay = languageDisplay;
             }
