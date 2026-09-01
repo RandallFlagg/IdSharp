@@ -17,7 +17,7 @@ public class ByteUtilsTest
     [Test]
     public void Clone_0Bytes()
     {
-        var original = new byte[0];
+        var original = Array.Empty<byte>();
         TestClone(original);
     }
 
@@ -78,13 +78,13 @@ public class ByteUtilsTest
     public void Compare_TwoParameters_Nulls()
     {
         // first parameter null
-        var result = ByteUtils.Compare(null, new byte[0]);
+        var result = ByteUtils.Compare(null, Array.Empty<byte>());
         Assert.That(result, Is.False, "first parameter null (1)");
         result = ByteUtils.Compare(null, new byte[] { 0xFF });
         Assert.That(result, Is.False, "first parameter null (2)");
 
         // second parameter null
-        result = ByteUtils.Compare(new byte[0], null);
+        result = ByteUtils.Compare(Array.Empty<byte>(), null);
         Assert.That(result, Is.False, "second parameter null (1)");
         result = ByteUtils.Compare(new byte[] { 0xFF }, null);
         Assert.That(result, Is.False, "second parameter null (2)");
@@ -98,7 +98,7 @@ public class ByteUtilsTest
     public void Compare_TwoParameters()
     {
         // equal
-        var result = ByteUtils.Compare(new byte[0], new byte[0]);
+        var result = ByteUtils.Compare(Array.Empty<byte>(), Array.Empty<byte>());
         Assert.That(result, Is.True);
 
         result = ByteUtils.Compare(new[] { (byte)0xFF }, new[] { (byte)0xFF });
@@ -144,13 +144,13 @@ public class ByteUtilsTest
     public void Compare_ThreeParameters_Nulls()
     {
         // first parameter null
-        var result = ByteUtils.Compare(null, new byte[0], 0);
+        var result = ByteUtils.Compare(null, Array.Empty<byte>(), 0);
         Assert.That(result, Is.False, "first parameter null, second parameter byte[0]");
         result = ByteUtils.Compare(null, new byte[] { 0xFF }, 0);
         Assert.That(result, Is.False, "first parameter null, second paramter byte[1]");
 
         // second parameter null
-        result = ByteUtils.Compare(new byte[0], null, 0);
+        result = ByteUtils.Compare(Array.Empty<byte>(), null, 0);
         Assert.That(result, Is.False, "second parameter null, first parameter byte[0]");
         result = ByteUtils.Compare(new byte[] { 0xFF }, null, 0);
         Assert.That(result, Is.False, "second parameter null, first parameter byte[1]");
