@@ -106,7 +106,7 @@ internal static class ID3v2
         /// <summary>
         /// ID3v2 tag version.
         /// </summary>
-        private enum ID3v2TagVersion : byte
+        private enum ID3v2TagVersion
         {
             /// <summary>
             /// ID3v2.2.

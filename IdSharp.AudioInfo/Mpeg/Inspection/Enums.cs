@@ -4,7 +4,7 @@ namespace IdSharp.AudioInfo.Mpeg.Inspection;
 // Duplicate values are intentional aliases (Mpeg1/Version1, Mpeg2/Version2, Mpeg25/Version25)
 // that expose both naming conventions for the same MPEG spec concept.
 #pragma warning disable CA1069
-internal enum MpegVersion : byte
+internal enum MpegVersion
 {
     Unknown = 1,
     /// <summary>
@@ -29,7 +29,7 @@ internal enum MpegVersion : byte
 // Duplicate values are intentional aliases (LayerI/Layer1, LayerII/Layer2, LayerIII/Layer3)
 // that expose both naming conventions for the same MPEG layer concept.
 #pragma warning disable CA1069
-internal enum MpegLayer : byte
+internal enum MpegLayer
 {
     Unknown = 0,
         /// <summary>
@@ -51,7 +51,7 @@ internal enum MpegLayer : byte
 #pragma warning restore CA1069
 
 // Channel mode codes
-internal enum MpegChannel : byte
+internal enum MpegChannel
 {
     Stereo = 0,
     JointStereo = 1,
@@ -61,7 +61,7 @@ internal enum MpegChannel : byte
 }
 
 // Extension mode codes (for Joint Stereo)
-internal enum JointStereoExtensionMode : byte
+internal enum JointStereoExtensionMode
 {
     Off = 0,
     IS = 1,
@@ -71,7 +71,7 @@ internal enum JointStereoExtensionMode : byte
 }
 
 // Emphasis mode codes
-internal enum Emphasis : byte
+internal enum Emphasis
 {
     None = 0,
     _5015 = 1,
@@ -80,7 +80,7 @@ internal enum Emphasis : byte
 }
 
 // Sample rate codes
-internal enum SampleRateLevel : ushort // UInt16
+internal enum SampleRateLevel
 {
     Level3 = 0,
     Level2 = 1,
