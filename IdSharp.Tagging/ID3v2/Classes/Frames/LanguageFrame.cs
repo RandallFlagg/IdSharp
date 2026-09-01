@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using IdSharp.Common.Utils;
 using IdSharp.Tagging.ID3v2.Extensions;
@@ -68,7 +69,7 @@ internal sealed class LanguageFrame : Frame, ILanguageFrame
             var languageCode = ID3v2Utils.ReadString(TextEncoding, stream, ref bytesLeft);
             if (languageCode.Length != 3)
             {
-                if (languageCode.ToLower() == "english" || languageCode.ToLower() == "en")
+                if (languageCode.ToLower(CultureInfo.InvariantCulture) == "english" || languageCode.ToLower(CultureInfo.InvariantCulture) == "en")
                 {
                     Items.AddNew().LanguageCode = "eng";
                 }
@@ -76,7 +77,7 @@ internal sealed class LanguageFrame : Frame, ILanguageFrame
                 {
                     foreach (var kvp in LanguageHelper.Languages)
                     {
-                        if (kvp.Value.ToLower() == languageCode.ToLower())
+                        if (kvp.Value.ToLower(CultureInfo.InvariantCulture) == languageCode.ToLower(CultureInfo.InvariantCulture))
                         {
                             Items.AddNew().LanguageCode = kvp.Key;
                             break;

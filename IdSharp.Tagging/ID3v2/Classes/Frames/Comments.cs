@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using IdSharp.Common.Utils;
 using IdSharp.Tagging.ID3v2.Extensions;
@@ -34,7 +35,7 @@ internal sealed class Comments : Frame, IComments
             }
             else
             {
-                _languageCode = value.ToLower().Trim();
+                _languageCode = value.ToLower(CultureInfo.InvariantCulture).Trim();
 
                 // Language code must be 3 characters
                 if (_languageCode.Length != 3)
@@ -112,7 +113,7 @@ internal sealed class Comments : Frame, IComments
                 var description = ID3v2Utils.ReadString(TextEncoding, stream, ref bytesLeft);
 
                 var invalidFrame = false;
-                if (LanguageHelper.Languages.ContainsKey(languageCode.ToLower()) == false && languageCode.ToLower() != "xxx")
+                if (LanguageHelper.Languages.ContainsKey(languageCode.ToLower(CultureInfo.InvariantCulture)) == false && languageCode.ToLower(CultureInfo.InvariantCulture) != "xxx")
                 {
                     // most likely, it's en\0, or some other funk
                     if (languageCode.StartsWith("en"))

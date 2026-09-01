@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -272,7 +273,7 @@ public partial class APEv2Tag : IAPEv2Tag
         else if (encoding == 3) sencoding = "reserved";*/
         // don't care what's in the item flags
 
-        var itemKey = stream.ReadISO88591().ToUpper();
+        var itemKey = stream.ReadISO88591().ToUpper(CultureInfo.InvariantCulture);
         var itemValue = stream.ReadUTF8(size);
 
         // does the key already exist?

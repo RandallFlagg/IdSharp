@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using IdSharp.Common.Events;
@@ -187,7 +188,7 @@ public abstract partial class FrameContainer : IFrameContainer
         // Process ReplayGain frames
         foreach (var frame in new List<ITXXXFrame>(m_UserDefinedTextList))
         {
-            if (frame.Description != null && frame.Description.ToUpper().StartsWith("REPLAYGAIN_"))
+            if (frame.Description != null && frame.Description.ToUpper(CultureInfo.InvariantCulture).StartsWith("REPLAYGAIN_"))
             {
                 m_UserDefinedTextList.Remove(frame);
                 m_ReplayGainList.Add(frame);

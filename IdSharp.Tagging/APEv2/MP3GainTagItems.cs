@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Globalization;
 
 
 namespace IdSharp.Tagging.APEv2; 
@@ -215,11 +216,11 @@ public class MP3GainTagItems {
             {
                 UndoWrapFlag = null;
             }
-            else if (val.ToUpper() == "N")
+            else if (val.ToUpper(CultureInfo.InvariantCulture) == "N")
             {
                 UndoWrapFlag = false;
             }
-            else if (val.ToUpper() == "W")
+            else if (val.ToUpper(CultureInfo.InvariantCulture) == "W")
             {
                 UndoWrapFlag = true;
             }
