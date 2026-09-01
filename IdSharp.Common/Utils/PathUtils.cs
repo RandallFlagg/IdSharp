@@ -65,7 +65,7 @@ public static class PathUtils
                 }
             }
 
-            if (extension.IndexOfAny(new[] { '?', '\\', ':' }) >= 0)
+            if (extension.IndexOfAny(['?', '\\', ':']) >= 0)
             {
                 throw new ArgumentException("Parameter 'extension' contains a character that is invalid in a file name on at least one supported platform", nameof(extension));
             }
