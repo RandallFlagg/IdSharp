@@ -699,7 +699,7 @@ internal sealed class MpegAudio
                 char.IsDigit(myVendorID, 6) &&
                 char.IsDigit(myVendorID, 7))
             {
-                result += " " + myVendorID.Substring(4, 4);
+                result = string.Concat(result, " ", myVendorID.AsSpan(4, 4));
             }
 
             return result;
