@@ -220,7 +220,7 @@ public class VorbisComment : IVorbisComment
                 {
                     Items.Remove(item);
                 }
-                else if (string.Compare(item.Name, "YEAR", true) == 0)
+                else if (string.Compare(item.Name, "YEAR", StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     if (string.IsNullOrEmpty(Items.GetValue("DATE")))
                     {

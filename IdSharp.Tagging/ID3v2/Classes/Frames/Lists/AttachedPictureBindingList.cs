@@ -62,7 +62,7 @@ internal sealed class AttachedPictureBindingList : BindingList<IAttachedPicture>
             {
                 if (string.IsNullOrEmpty(attachedPicture.Description) == false)
                 {
-                    if (string.Compare(attachedPicture.Description, e.Data, false) == 0)
+                    if (string.Compare(attachedPicture.Description, e.Data, StringComparison.Ordinal) == 0)
                     {
                         // TODO: Make this a warning
                         //e.Cancel = true;

@@ -381,31 +381,31 @@ internal class Mpeg4Tag : INotifyPropertyChanged
             return;
         }
 
-        if (string.Compare(key, "©nam", true) == 0)
+        if (string.Compare(key, "©nam", StringComparison.OrdinalIgnoreCase) == 0)
         {
             Title = Encoding.UTF8.GetString(data, 0, size);
         }
-        else if (string.Compare(key, "©ART", true) == 0)
+        else if (string.Compare(key, "©ART", StringComparison.OrdinalIgnoreCase) == 0)
         {
             Artist = Encoding.UTF8.GetString(data, 0, size);
         }
-        else if (string.Compare(key, "©alb", true) == 0)
+        else if (string.Compare(key, "©alb", StringComparison.OrdinalIgnoreCase) == 0)
         {
             Album = Encoding.UTF8.GetString(data, 0, size);
         }
-        else if (string.Compare(key, "©cmt", true) == 0)
+        else if (string.Compare(key, "©cmt", StringComparison.OrdinalIgnoreCase) == 0)
         {
             Comment = Encoding.UTF8.GetString(data, 0, size);
         }
-        else if (string.Compare(key, "©day", true) == 0)
+        else if (string.Compare(key, "©day", StringComparison.OrdinalIgnoreCase) == 0)
         {
             Year = Encoding.UTF8.GetString(data, 0, size);
         }
-        else if (string.Compare(key, "©too", true) == 0)
+        else if (string.Compare(key, "©too", StringComparison.OrdinalIgnoreCase) == 0)
         {
             Tool = Encoding.UTF8.GetString(data, 0, size);
         }
-        else if (string.Compare(key, "gnre", true) == 0)
+        else if (string.Compare(key, "gnre", StringComparison.OrdinalIgnoreCase) == 0)
         {
             if (string.IsNullOrEmpty(Genre))
             {
@@ -416,29 +416,29 @@ internal class Mpeg4Tag : INotifyPropertyChanged
                 }
             }
         }
-        else if (string.Compare(key, "©gen", true) == 0)
+        else if (string.Compare(key, "©gen", StringComparison.OrdinalIgnoreCase) == 0)
         {
             Genre = Encoding.UTF8.GetString(data, 0, size);
         }
-        else if (string.Compare(key, "trkn", true) == 0)
+        else if (string.Compare(key, "trkn", StringComparison.OrdinalIgnoreCase) == 0)
         {
             TrackNumber = data[3];
             TotalTracks = data[5];
         }
-        else if (string.Compare(key, "disk", true) == 0)
+        else if (string.Compare(key, "disk", StringComparison.OrdinalIgnoreCase) == 0)
         {
             Disc = data[3];
             TotalDiscs = data[5];
         }
-        else if (string.Compare(key, "©wrt", true) == 0)
+        else if (string.Compare(key, "©wrt", StringComparison.OrdinalIgnoreCase) == 0)
         {
             Composer = Encoding.UTF8.GetString(data, 0, size);
         }
-        else if (string.Compare(key, "cpil", true) == 0)
+        else if (string.Compare(key, "cpil", StringComparison.OrdinalIgnoreCase) == 0)
         {
             IsPartOfCompilation = (data[0] == 1);
         }
-        else if (string.Compare(key, "tmpo", true) == 0)
+        else if (string.Compare(key, "tmpo", StringComparison.OrdinalIgnoreCase) == 0)
         {
             BPM = data[1] + (data[0] << 8);
         }
@@ -521,20 +521,20 @@ internal class Mpeg4Tag : INotifyPropertyChanged
 
             _atoms.Add(atom);
 
-            if (string.Compare(atomname, "mdat", true) == 0)
+            if (string.Compare(atomname, "mdat", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 MdatAtomSize = atomsize;
             }
-            else if (string.Compare(atomname, "moov", true) == 0)
+            else if (string.Compare(atomname, "moov", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 _moovpos = stream.Position - 8;
             }
-            else if (string.Compare(atomname, "udta", true) == 0)
+            else if (string.Compare(atomname, "udta", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 _udtapos = stream.Position - 8;
                 _udtasize = atomsize;
             }
-            else if (string.Compare(atomname, "free", true) == 0)
+            else if (string.Compare(atomname, "free", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 // we'd like a free under a moov
                 // so check for level = 1
@@ -546,7 +546,7 @@ internal class Mpeg4Tag : INotifyPropertyChanged
                         // until we hit a level 1
                         if (_atoms[i].level == 1)
                         {
-                            if (string.Compare(_atoms[i].name, "moov", true) == 0)
+                            if (string.Compare(_atoms[i].name, "moov", StringComparison.OrdinalIgnoreCase) == 0)
                             {
                                 if (atomsize > _freesize)
                                 {
@@ -568,7 +568,7 @@ internal class Mpeg4Tag : INotifyPropertyChanged
 
             foreach (var atomType in ATOM_TYPES)
             {
-                if (string.Compare(atomname, atomType, true) == 0)
+                if (string.Compare(atomname, atomType, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     ParseAtom(stream, stream.Position, offset + atomsize, level);
                     break;
@@ -576,7 +576,7 @@ internal class Mpeg4Tag : INotifyPropertyChanged
             }
 
             // meta atom contains tags and some other data
-            if (string.Compare(atomname, "meta", true) == 0)
+            if (string.Compare(atomname, "meta", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 // read in meta atom
                 var atomdata = stream.Read(atomsize - 8);
@@ -612,7 +612,7 @@ internal class Mpeg4Tag : INotifyPropertyChanged
             } // if meta
 
             // mdhd has data for calculating playtime
-            if (string.Compare(atomname, "mdhd", true) == 0)
+            if (string.Compare(atomname, "mdhd", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 stream.Seek(12, SeekOrigin.Current);
                 Frequency = stream.ReadInt32();
@@ -620,7 +620,7 @@ internal class Mpeg4Tag : INotifyPropertyChanged
             }
 
             // stsd has data for sample, channels and codec
-            if (string.Compare(atomname, "stsd", true) == 0)
+            if (string.Compare(atomname, "stsd", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 var atomdata = stream.Read(atomsize - 8);
                 ParseStsdAtom(atomdata);
@@ -824,7 +824,7 @@ internal class Mpeg4Tag : INotifyPropertyChanged
         {
             foreach (var atom in tag._atoms)
             {
-                if (string.Compare(atom.name, "udta", true) == 0)
+                if (string.Compare(atom.name, "udta", StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     outf.Seek(atom.pos + 4, SeekOrigin.Begin);
                     outf.Write(FREE_BYTES);

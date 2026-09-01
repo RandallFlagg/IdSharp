@@ -15,7 +15,7 @@ public class NameValueList : List<NameValueItem>
     {
         foreach (var item in this)
         {
-            if (string.Compare(item.Name, key, true) == 0)
+            if (string.Compare(item.Name, key, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return item.Value;
             }
@@ -34,7 +34,7 @@ public class NameValueList : List<NameValueItem>
 
         foreach (var item in this)
         {
-            if (string.Compare(item.Name, key, true) == 0)
+            if (string.Compare(item.Name, key, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 values.Add(item.Value);
             }
@@ -52,7 +52,7 @@ public class NameValueList : List<NameValueItem>
     {
         foreach (var item in new List<NameValueItem>(this))
         {
-            if (string.Compare(item.Name, key, true) == 0)
+            if (string.Compare(item.Name, key, StringComparison.OrdinalIgnoreCase) == 0)
             {
                 Remove(item);
             }
