@@ -112,7 +112,7 @@ public sealed class DescriptiveLameTagReader
             {
                 tmpLameTagInfoVersion = "LAME";
 
-                if (string.Compare(VersionString, "3.90") < 0) // FirstLameWithTag
+                if (string.Compare(VersionString, "3.90", StringComparison.Ordinal) < 0) // FirstLameWithTag
                 {
                     // this file was encoded by an earlier version of LAME and
                     // the header only contains a version string.
@@ -148,7 +148,7 @@ public sealed class DescriptiveLameTagReader
 
             if (IsLameTagFound)
             {
-                if (string.Compare(VersionString, "3.90") >= 0) // FirstLameWithTag
+                if (string.Compare(VersionString, "3.90", StringComparison.Ordinal) >= 0) // FirstLameWithTag
                 {
                     tmpLameTagInfoPreset = Preset;
 

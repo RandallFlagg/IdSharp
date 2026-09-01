@@ -198,7 +198,7 @@ public static class GenreHelper
     {
         for (var i = 0; i <= _genreCount; i++)
         {
-            if (string.Compare(genre, GenreByIndex[i], true) == 0)
+            if (string.Compare(genre, GenreByIndex[i], StringComparison.OrdinalIgnoreCase) == 0)
             {
                 return i;
             }

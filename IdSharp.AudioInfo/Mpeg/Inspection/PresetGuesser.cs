@@ -85,7 +85,7 @@ internal sealed class PresetGuesser
             Result = BestGuessTwoVersions(LameVersionGroup.lvg3931_3903up, LameVersionGroup.lvg393, ABitrate, AQuality, AEncodingMethod,
                         ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100);
 	        }
-	        else if (string.Compare(VersionString4, "3.94") >= 0)
+	        else if (string.Compare(VersionString4, "3.94", StringComparison.Ordinal) >= 0)
         {
 			    // 3.94 and 3.95[.x] are identical for preset guessing.
 			    // 3.95.1 is the latest version at the time of writing.
