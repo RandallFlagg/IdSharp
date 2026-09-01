@@ -52,7 +52,7 @@ public class PathUtilsTest
         const string path = @"C:\WINDOWS\HelloWorld.txt";
         var a = PathUtils.GetTemporaryFileNameBasedOnFileName(path);
 
-        Assert.That(a.StartsWith(path));
+        Assert.That(a.StartsWith(path, StringComparison.Ordinal));
         Assert.That(!File.Exists(a));
     }
 

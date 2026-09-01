@@ -25,7 +25,7 @@ internal sealed class BasicLameTagReader
     /// <param name="path">The path.</param>
     public BasicLameTagReader(string path)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(nameof(path));
+        ArgumentException.ThrowIfNullOrWhiteSpace(path);
 
         // Initialize
         using var br = new BinaryReader(File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read));
