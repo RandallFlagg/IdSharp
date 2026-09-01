@@ -1,5 +1,7 @@
 namespace IdSharp.AudioInfo.Mpeg.Inspection;
 
+internal readonly record struct PresetGuessResult(LamePreset Preset, bool NonBitrate);
+
 internal sealed class PresetGuesser
 {
     private static readonly List<PresetGuessRow> PresetGuessTable =
@@ -49,11 +51,11 @@ internal sealed class PresetGuesser
         new PresetGuessRow(16, 57, 2, 1, 0, 4, 56, LamePreset.Phone, LameVersionGroup.lvg394up)
     ];
 
-    public LamePreset GuessPreset(string AVersionString, byte ABitrate, byte AQuality,
+    public PresetGuessResult GuessPreset(string AVersionString, byte ABitrate, byte AQuality,
                 byte AEncodingMethod, byte ANoiseShaping, byte AStereoMode,
-            byte AATHType, byte ALowpassDiv100, out bool ANonBitrate)
+            byte AATHType, byte ALowpassDiv100)
     {
-        LamePreset Result;
+        PresetGuessResult Result;
 
 	    var VersionString4 = AVersionString.Substring(0, 4);
         var VersionString5 = AVersionString.Substring(0, 5);
@@ -63,51 +65,50 @@ internal sealed class PresetGuesser
         if (VersionString4 == "3.90" && VersionString5 != "3.90." || VersionString4 == "3.92")
         {
             Result = GuessForVersion(LameVersionGroup.lvg390_3901_392, ABitrate, AQuality, AEncodingMethod,
-                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100, out ANonBitrate);
+                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100);
         }
 	    else if (VersionString5 == "3.90.")
         {
 			    // Both 3.90.2 and 3.90.3 record the version string as '3.90.' so need to test both.
             Result = BestGuessTwoVersions(LameVersionGroup.lvg3902_391, LameVersionGroup.lvg3931_3903up, ABitrate, AQuality, AEncodingMethod,
-                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100, out ANonBitrate);
+                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100);
         }
 	    else if (VersionString4 == "3.91")
         {
             Result = GuessForVersion(LameVersionGroup.lvg3902_391, ABitrate, AQuality, AEncodingMethod,
-                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100, out ANonBitrate);
+                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100);
         }
 	        else if (VersionString4 == "3.93")
 	        {
 			    // Both 3.93 and 3.93.1 record the version string as '3.93' so need to
 			    // test both.
             Result = BestGuessTwoVersions(LameVersionGroup.lvg3931_3903up, LameVersionGroup.lvg393, ABitrate, AQuality, AEncodingMethod,
-                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100, out ANonBitrate);
+                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100);
 	        }
 	        else if (string.Compare(VersionString4, "3.94") >= 0)
         {
 			    // 3.94 and 3.95[.x] are identical for preset guessing.
 			    // 3.95.1 is the latest version at the time of writing.
             Result = GuessForVersion(LameVersionGroup.lvg394up, ABitrate, AQuality, AEncodingMethod,
-                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100, out ANonBitrate);
+                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100);
         }
 	        else
         {
-		        Result = LamePreset.Unknown;
-            ANonBitrate = false;
+		        Result = new PresetGuessResult(LamePreset.Unknown, false);
         }
 
         return Result;
     }
 
-    private LamePreset GuessForVersion(LameVersionGroup AVersionGroup, byte ABitrate, byte AQuality,
+    private static PresetGuessResult GuessForVersion(LameVersionGroup AVersionGroup, byte ABitrate, byte AQuality,
                 byte AEncodingMethod, byte ANoiseShaping, byte AStereoMode,
-            byte AATHType, byte ALowpassDiv100, out bool ANonBitrate)
+            byte AATHType, byte ALowpassDiv100)
     {
         var Result = LamePreset.Unknown;
 
         var NonBitrateResult = LamePreset.Unknown;
 
-        ANonBitrate = false;
+        var ANonBitrate = false;
 
 		    foreach (var row in PresetGuessTable)
         {
@@ -139,38 +140,33 @@ internal sealed class PresetGuesser
 			    Result = NonBitrateResult;
 		    }
 
-        return Result;
+        return new PresetGuessResult(Result, ANonBitrate);
     }
 
-    private LamePreset BestGuessTwoVersions(LameVersionGroup AGroup1, LameVersionGroup AGroup2, byte ABitrate,
+    private PresetGuessResult BestGuessTwoVersions(LameVersionGroup AGroup1, LameVersionGroup AGroup2, byte ABitrate,
             byte AQuality, byte AEncodingMethod, byte ANoiseShaping, byte AStereoMode,
-            byte AATHType, byte ALowpassDiv100, out bool ANonBitrate)
+            byte AATHType, byte ALowpassDiv100)
     {
-        LamePreset Result;
+        PresetGuessResult Result;
 
         // A bitrate-based guess is better than a non-bitrate guess which in turn is
         // better than no guess at all.
 
-		    LamePreset FirstPreset, SecondPreset;
-        bool FirstNonBitrate, SecondNonBitrate;
+		    PresetGuessResult FirstResult, SecondResult;
 
-		    FirstPreset = GuessForVersion(AGroup1, ABitrate, AQuality, AEncodingMethod,
-                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100, out ANonBitrate);
-		    FirstNonBitrate = ANonBitrate;
+		    FirstResult = GuessForVersion(AGroup1, ABitrate, AQuality, AEncodingMethod,
+                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100);
 
-        SecondPreset = GuessForVersion(AGroup2, ABitrate, AQuality, AEncodingMethod,
-                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100, out ANonBitrate);
-		    SecondNonBitrate = ANonBitrate;
+        SecondResult = GuessForVersion(AGroup2, ABitrate, AQuality, AEncodingMethod,
+                        ANoiseShaping, AStereoMode, AATHType, ALowpassDiv100);
 
-        if (FirstPreset == LamePreset.Unknown || FirstNonBitrate && SecondPreset != LamePreset.Unknown)
+        if (FirstResult.Preset == LamePreset.Unknown || FirstResult.NonBitrate && SecondResult.Preset != LamePreset.Unknown)
 		    {
-			    Result = SecondPreset;
-			    ANonBitrate = SecondNonBitrate;
+			    Result = SecondResult;
 		    }
 		    else
 		    {
-			    Result = FirstPreset;
-			    ANonBitrate = FirstNonBitrate;
+			    Result = FirstResult;
 		    }
 
         return Result;
