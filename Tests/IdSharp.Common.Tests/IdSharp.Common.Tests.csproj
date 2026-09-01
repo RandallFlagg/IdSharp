@@ -5,6 +5,10 @@
     <Compile Remove="Utils\Base64EncoderTest.cs" />
   </ItemGroup>
 
+  <PropertyGroup Label="FIX and DEL">
+    <NoWarn>CA1303</NoWarn>
+  </PropertyGroup>
+    
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <IsTestProject>true</IsTestProject>
