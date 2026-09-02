@@ -114,24 +114,24 @@ internal sealed class PresetGuesser
         {
 			    if
                 (row.HasVersionGroup(AVersionGroup) &&
-				    row.TVs[1] == AQuality &&
-				    row.TVs[2] == AEncodingMethod &&
-				    row.TVs[3] == ANoiseShaping &&
-				    row.TVs[4] == AStereoMode &&
-				    row.TVs[5] == AATHType &&
-				    row.TVs[6] == ALowpassDiv100)
-			    {
-				    if (row.TVs[0] == ABitrate)
+                    row.Tvs[1] == AQuality &&
+                    row.Tvs[2] == AEncodingMethod &&
+                    row.Tvs[3] == ANoiseShaping &&
+                    row.Tvs[4] == AStereoMode &&
+                    row.Tvs[5] == AATHType &&
+                    row.Tvs[6] == ALowpassDiv100)
                 {
-					    Result = row.Res;
-					    break;
-				    }
-				    // Non-bitrate based guessing is only relevant to the VBR presets.
-				    else if (AEncodingMethod == 3 || AEncodingMethod == 4)
-                {
-					    NonBitrateResult = row.Res;
+                    if (row.Tvs[0] == ABitrate)
+                    {
+                        Result = row.Res;
+                        break;
+                    }
+                    // Non-bitrate based guessing is only relevant to the VBR presets.
+                    else if (AEncodingMethod == 3 || AEncodingMethod == 4)
+                    {
+                        NonBitrateResult = row.Res;
+                    }
                 }
-			    }
         }
 
         if (Result == LamePreset.Unknown && NonBitrateResult != LamePreset.Unknown)

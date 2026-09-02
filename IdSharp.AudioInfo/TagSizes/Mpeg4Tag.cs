@@ -25,8 +25,8 @@ internal class Mpeg4Tag
 
     private class Atom
     {
-        public string name;
-        public int level;
+        public string Name { get; set; }
+        public int Level { get; set; }
     }
 
     #region <<< Internal Properties >>>
@@ -106,10 +106,10 @@ internal class Mpeg4Tag
             }
 
             var atom = new Atom();
-            atom.name = atomname;
+            atom.Name = atomname;
             //atom.size = atomsize;
             //atom.pos = stream.Position - 8;
-            atom.level = level;
+            atom.Level = level;
 
             _atoms.Add(atom);
 
@@ -130,15 +130,15 @@ internal class Mpeg4Tag
             {
                 // we'd like a free under a moov
                 // so check for level = 1
-                if (atom.level == 2)
-                {
-                    // go backwards through the entries
-                    for (var i = _atoms.Count - 1; i > 0; i--)
+                    if (atom.Level == 2)
                     {
-                        // until we hit a level 1
-                        if (_atoms[i].level == 1)
+                        // go backwards through the entries
+                        for (var i = _atoms.Count - 1; i > 0; i--)
                         {
-                            if (string.Equals(_atoms[i].name, "moov", StringComparison.OrdinalIgnoreCase))
+                            // until we hit a level 1
+                            if (_atoms[i].Level == 1)
+                            {
+                                if (string.Equals(_atoms[i].Name, "moov", StringComparison.OrdinalIgnoreCase))
                             {
                                 if (atomsize > _freesize)
                                 {

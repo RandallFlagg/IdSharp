@@ -105,10 +105,10 @@ internal class Mpeg4Tag : INotifyPropertyChanged
 
     private class Atom
     {
-        public string name;
-        public int size;
-        public long pos;
-        public int level;
+        public string Name { get; set; }
+        public int Size { get; set; }
+        public long Pos { get; set; }
+        public int Level { get; set; }
     }
 
     private void RaisePropertyChanged(string propertyName)
@@ -514,10 +514,10 @@ internal class Mpeg4Tag : INotifyPropertyChanged
             }
 
             var atom = new Atom();
-            atom.name = atomname;
-            atom.size = atomsize;
-            atom.pos = stream.Position - 8;
-            atom.level = level;
+            atom.Name = atomname;
+            atom.Size = atomsize;
+            atom.Pos = stream.Position - 8;
+            atom.Level = level;
 
             _atoms.Add(atom);
 
@@ -538,15 +538,15 @@ internal class Mpeg4Tag : INotifyPropertyChanged
             {
                 // we'd like a free under a moov
                 // so check for level = 1
-                if (atom.level == 2)
+                if (atom.Level == 2)
                 {
                     // go backwards through the entries
                     for (var i = _atoms.Count - 1; i > 0; i--)
                     {
                         // until we hit a level 1
-                        if (_atoms[i].level == 1)
+                        if (_atoms[i].Level == 1)
                         {
-                            if (string.Compare(_atoms[i].name, "moov", StringComparison.OrdinalIgnoreCase) == 0)
+                            if (string.Compare(_atoms[i].Name, "moov", StringComparison.OrdinalIgnoreCase) == 0)
                             {
                                 if (atomsize > _freesize)
                                 {
@@ -824,9 +824,9 @@ internal class Mpeg4Tag : INotifyPropertyChanged
         {
             foreach (var atom in tag._atoms)
             {
-                if (string.Compare(atom.name, "udta", StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare(atom.Name, "udta", StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    outf.Seek(atom.pos + 4, SeekOrigin.Begin);
+                    outf.Seek(atom.Pos + 4, SeekOrigin.Begin);
                     outf.Write(FREE_BYTES);
                 }
             }

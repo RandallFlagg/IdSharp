@@ -17,8 +17,8 @@ internal static class Http
 
     private class RequestAndData
     {
-        public HttpWebRequest Request;
-        public byte[] Data;
+        public HttpWebRequest Request { get; set; }
+        public byte[] Data { get; set; }
     }
 
     /// <summary>

@@ -16,11 +16,11 @@ public class VorbisComment : IVorbisComment
 
     private class InternalInfo
     {
-        public int OrigVorbisCommentSize = 0;
-        public int OrigPaddingSize = 0;
-        public FileType? FileType = null;
-        public string Vendor = null;
-        public IEnumerable<FlacMetaDataBlock> MetaDataBlockList = null;
+        public int OrigVorbisCommentSize { get; set; }
+        public int OrigPaddingSize { get; set; }
+        public FileType? FileType { get; set; }
+        public string Vendor { get; set; }
+        public IEnumerable<FlacMetaDataBlock> MetaDataBlockList { get; set; }
     }
 
     private enum FileType
