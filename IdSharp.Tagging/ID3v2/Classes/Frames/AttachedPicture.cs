@@ -453,7 +453,7 @@ internal sealed class AttachedPicture : Frame, IAttachedPicture
             try
             {
                 var url = ByteUtils.ISO88591GetString(_pictureData);
-                if (url.Contains("://"))
+                if (url.Contains("://", StringComparison.Ordinal))
                 {
                     MimeType = "-->";
                 }

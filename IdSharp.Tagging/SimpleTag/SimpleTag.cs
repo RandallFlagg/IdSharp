@@ -312,7 +312,7 @@ public class SimpleTag : ISimpleTag
             else
             {
                 // Handle ##/## format
-                if (TrackNumber.Contains("/"))
+                if (TrackNumber.Contains("/", StringComparison.Ordinal))
                 {
                     if (int.TryParse(TrackNumber.Split('/')[0], out trackNumber))
                     {

@@ -170,7 +170,7 @@ public class ReplayGainTagItems {
 
         if (!string.IsNullOrEmpty(textToRemove))
         {
-            value = value.Replace(textToRemove, "");
+            value = value.Replace(textToRemove, "", StringComparison.Ordinal);
         }
 
         decimal result;
