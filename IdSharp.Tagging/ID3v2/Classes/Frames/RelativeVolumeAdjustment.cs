@@ -500,7 +500,7 @@ internal sealed class RelativeVolumeAdjustment : Frame, IRelativeVolumeAdjustmen
          */
     }
 
-    private void WriteID3v24ChannelItem(MemoryStream memoryStream, ChannelType channelType, decimal adjustment, decimal peak)
+    private static void WriteID3v24ChannelItem(MemoryStream memoryStream, ChannelType channelType, decimal adjustment, decimal peak)
     {
         if (adjustment != 0 || peak != 0)
         {
