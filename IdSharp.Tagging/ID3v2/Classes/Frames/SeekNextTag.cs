@@ -45,7 +45,7 @@ internal sealed class SeekNextTag : Frame, ISeekNextTag
     {
         if (_minimumOffsetToNextTag == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         throw new NotImplementedException();

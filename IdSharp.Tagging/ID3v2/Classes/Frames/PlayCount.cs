@@ -57,7 +57,7 @@ internal sealed class PlayCount : Frame, IPlayCount
     {
         if (m_Value == null)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var frameData = new MemoryStream())

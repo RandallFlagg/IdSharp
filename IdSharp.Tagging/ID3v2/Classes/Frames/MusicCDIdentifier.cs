@@ -49,7 +49,7 @@ internal sealed class MusicCDIdentifier : Frame, IMusicCDIdentifier
     {
         if (TOC == null || TOC.Length == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var frameData = new MemoryStream())

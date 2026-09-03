@@ -72,7 +72,7 @@ internal sealed class RecommendedBufferSize : Frame, IRecommendedBufferSize
     {
         if (BufferSize == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         throw new NotImplementedException();

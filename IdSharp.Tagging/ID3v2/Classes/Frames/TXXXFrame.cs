@@ -79,7 +79,7 @@ internal sealed class TXXXFrame : Frame, ITXXXFrame
     {
         if (string.IsNullOrEmpty(_value))
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         byte[] descriptionData;

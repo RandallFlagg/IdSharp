@@ -216,13 +216,13 @@ internal sealed class AudioText : Frame, IAudioText
     {
         if (_audioData == null || _audioData.Length == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         var frameID = GetFrameID(tagVersion);
         if (frameID == null)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var frameData = new MemoryStream())

@@ -98,7 +98,7 @@ internal sealed class Popularimeter : Frame, IPopularimeter
     {
         if (_rating == 0 && _playCount == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var frameData = new MemoryStream())

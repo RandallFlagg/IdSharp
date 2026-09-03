@@ -353,7 +353,7 @@ internal sealed class AttachedPicture : Frame, IAttachedPicture
     {
         if (_pictureData == null || _pictureData.Length == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         // iTunes doesn't like Unicode in APIC descriptions - fixed in iTunes 7.1.0.59

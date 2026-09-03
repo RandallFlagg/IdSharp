@@ -409,7 +409,7 @@ public partial class ID3v1Tag : IID3v1Tag
     {
         if (value == null)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
         else
         {

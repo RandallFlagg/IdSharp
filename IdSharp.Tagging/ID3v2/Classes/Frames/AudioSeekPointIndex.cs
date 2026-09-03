@@ -85,7 +85,7 @@ internal sealed class AudioSeekPointIndex : Frame, IAudioSeekPointIndex
             BitsPerIndexPoint == 0 ||
             FractionAtIndex.Count == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         throw new NotImplementedException();

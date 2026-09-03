@@ -53,7 +53,7 @@ internal sealed class Podcast : Frame, IPodcast
     {
         if (!Value)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var frameData = new MemoryStream())

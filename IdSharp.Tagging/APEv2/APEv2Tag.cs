@@ -93,7 +93,7 @@ public partial class APEv2Tag : IAPEv2Tag
         }
         else
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var ms = new MemoryStream())

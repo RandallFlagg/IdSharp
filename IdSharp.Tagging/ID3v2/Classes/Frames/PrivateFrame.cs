@@ -62,7 +62,7 @@ internal sealed class PrivateFrame : Frame, IPrivateFrame
     {
         if (_privateData == null || _privateData.Length == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var frameData = new MemoryStream())

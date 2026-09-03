@@ -87,7 +87,7 @@ internal sealed class Ownership : Frame, IOwnership
             DateOfPurchase == DateTime.MinValue &&
             string.IsNullOrEmpty(Seller))
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         throw new NotImplementedException();

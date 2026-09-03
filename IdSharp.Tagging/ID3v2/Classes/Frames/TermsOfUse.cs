@@ -95,7 +95,7 @@ internal sealed class TermsOfUse : Frame, ITermsOfUse
     {
         if (string.IsNullOrEmpty(_value))
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         byte[] valueData;

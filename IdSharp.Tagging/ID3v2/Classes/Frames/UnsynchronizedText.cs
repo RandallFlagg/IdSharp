@@ -97,7 +97,7 @@ internal sealed class UnsynchronizedText : Frame, IUnsynchronizedText
 
         if (string.IsNullOrEmpty(Text))
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         byte[] contentDescriptorData;

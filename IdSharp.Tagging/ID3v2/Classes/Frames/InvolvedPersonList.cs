@@ -76,7 +76,7 @@ internal sealed class InvolvedPersonList : Frame, IInvolvedPersonList
     {
         if (Items.Count == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         // Sets appropriate TextEncoding if ISO-8859-1 is insufficient
@@ -123,7 +123,7 @@ internal sealed class InvolvedPersonList : Frame, IInvolvedPersonList
 
             if (!foundItem)
             {
-                return new byte[0];
+                return Array.Empty<byte>();
             }
 
             return _frameHeader.GetBytes(frameData, tagVersion, GetFrameID(tagVersion));
