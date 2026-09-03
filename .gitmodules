@@ -1,4 +1,0 @@
-[submodule "External/System.Windows.Forms"]
-	path = External/System.Windows.Forms
-	url = https://github.com/RandallFlagg/System.Windows.Forms.git
-	branch = dotnet8

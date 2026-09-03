@@ -27,7 +27,8 @@
   <ItemGroup Condition="'$(OS)' != 'Windows_NT'">
 <!--    <ProjectReference Include="..\..\External\System.Windows.Forms\Mono.WebBrowser\Mono.WebBrowser.csproj" />-->
 <!--    <ProjectReference Include="..\..\External\System.Windows.Forms\System.Drawing.Design\System.Drawing.Design.csproj" />-->
-    <ProjectReference Include="..\..\..\External\System.Windows.Forms\System.Windows.Forms\System.Windows.Forms.csproj" />
+<!--    <ProjectReference Include="../../External/System.Windows.Forms/System.Windows.Forms/System.Windows.Forms.csproj" />-->
     <PackageReference Include="System.Resources.Extensions" />
+    <PackageReference Include="Core.System.Windows.Forms" />
   </ItemGroup>
 </Project>

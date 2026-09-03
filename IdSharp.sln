@@ -38,14 +38,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdSharp.Tagging.Tests", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdSharp.AudioInfo.Tests", "Tests\IdSharp.AudioInfo.Tests\IdSharp.AudioInfo.Tests.csproj", "{88ACB9DD-9E47-B57D-5978-05B3617839A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Windows.Forms", "External\System.Windows.Forms\System.Windows.Forms\System.Windows.Forms.csproj", "{F7169E8B-3083-4832-90F7-902BFD4862AC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{410A7B92-CF3A-4E74-BA49-D6A57D640117}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Drawing.Design", "External\System.Windows.Forms\System.Drawing.Design\System.Drawing.Design.csproj", "{7BE41548-5AE7-4864-801E-215597A32573}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.WebBrowser", "External\System.Windows.Forms\Mono.WebBrowser\Mono.WebBrowser.csproj", "{5508FDD5-5E97-460A-9517-AE8079063D3F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,18 +86,6 @@ Global
 		{88ACB9DD-9E47-B57D-5978-05B3617839A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88ACB9DD-9E47-B57D-5978-05B3617839A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88ACB9DD-9E47-B57D-5978-05B3617839A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7169E8B-3083-4832-90F7-902BFD4862AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7169E8B-3083-4832-90F7-902BFD4862AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7169E8B-3083-4832-90F7-902BFD4862AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7169E8B-3083-4832-90F7-902BFD4862AC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7BE41548-5AE7-4864-801E-215597A32573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BE41548-5AE7-4864-801E-215597A32573}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BE41548-5AE7-4864-801E-215597A32573}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BE41548-5AE7-4864-801E-215597A32573}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5508FDD5-5E97-460A-9517-AE8079063D3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5508FDD5-5E97-460A-9517-AE8079063D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5508FDD5-5E97-460A-9517-AE8079063D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5508FDD5-5E97-460A-9517-AE8079063D3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,9 +98,6 @@ Global
 		{5D99BEEA-86CA-4144-A089-7E65F27364B1} = {2BA9EB65-1684-47D1-A477-868048A3CCD0}
 		{B31871DE-B39F-4AF5-91CB-DDD985ACA1E1} = {2BA9EB65-1684-47D1-A477-868048A3CCD0}
 		{88ACB9DD-9E47-B57D-5978-05B3617839A1} = {2BA9EB65-1684-47D1-A477-868048A3CCD0}
-		{F7169E8B-3083-4832-90F7-902BFD4862AC} = {410A7B92-CF3A-4E74-BA49-D6A57D640117}
-		{7BE41548-5AE7-4864-801E-215597A32573} = {410A7B92-CF3A-4E74-BA49-D6A57D640117}
-		{5508FDD5-5E97-460A-9517-AE8079063D3F} = {410A7B92-CF3A-4E74-BA49-D6A57D640117}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0A735BB0-B12D-4018-8DF4-41F914D220A0}
