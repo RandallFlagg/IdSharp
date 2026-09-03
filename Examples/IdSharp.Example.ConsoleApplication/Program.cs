@@ -115,8 +115,31 @@ static string GetFileName(string[] args)
         }
         else
         {
-            Console.WriteLine($"\"{fileName}\" not found.");
-            return null;
+            var baseDir = AppContext.BaseDirectory;
+            while (baseDir != null)
+            {
+                tryFileName = Path.Combine(baseDir, fileName);
+                if (File.Exists(tryFileName))
+                {
+                    fileName = tryFileName;
+                    break;
+                }
+
+                var testFilesDir = Path.Combine(baseDir, "TestFiles");
+                if (Directory.Exists(testFilesDir))
+                {
+                    fileName = Path.Combine(testFilesDir, Path.GetFileName(fileName));
+                    break;
+                }
+
+                baseDir = Directory.GetParent(baseDir)?.FullName;
+            }
+
+            if (!File.Exists(fileName))
+            {
+                Console.WriteLine($"\"{fileName}\" not found.");
+                return null;
+            }
         }
     }
 

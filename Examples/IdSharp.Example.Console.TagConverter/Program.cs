@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.IO;
 
 using IdSharp.Example.Console.TagConverter;
 using IdSharp.Tagging.ID3v2;
@@ -262,7 +263,23 @@ bool ParseArguments(string[] args)
 
     if (_fileName == null && _directory == null)
     {
-        _directory = Environment.CurrentDirectory;
+        var baseDir = Environment.CurrentDirectory;
+        while (baseDir != null)
+        {
+            var testFilesDir = Path.Combine(baseDir, "TestFiles");
+            if (Directory.Exists(testFilesDir))
+            {
+                _directory = testFilesDir;
+                break;
+            }
+
+            baseDir = Directory.GetParent(baseDir)?.FullName;
+        }
+
+        if (_directory == null)
+        {
+            _directory = Environment.CurrentDirectory;
+        }
     }
 
     return true;

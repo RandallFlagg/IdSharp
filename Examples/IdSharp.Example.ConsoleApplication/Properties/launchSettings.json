@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "IdSharp.Example.ConsoleApplication": {
+      "commandName": "Project",
+      "commandLineArgs": "../../TestFiles/file_example_MP3_700KB.mp3"
+    }
+  }
+}
