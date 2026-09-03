@@ -103,7 +103,7 @@ internal sealed class BasicLameTagReader
         Preset = (ushort)((_tag.Surround_Preset[0] << 8) + _tag.Surround_Preset[1] & 0x07FF);
 
         // Guess preset
-        var result = new PresetGuesser().GuessPreset(
+        var result = PresetGuesser.GuessPreset(
             VersionStringNonLameTag, /*m_Tag.VersionString*/
             _tag.Bitrate,
             _tag.Quality,

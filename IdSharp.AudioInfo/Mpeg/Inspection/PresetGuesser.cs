@@ -51,7 +51,7 @@ internal sealed class PresetGuesser
         new PresetGuessRow(16, 57, 2, 1, 0, 4, 56, LamePreset.Phone, LameVersionGroup.lvg394up)
     ];
 
-    public PresetGuessResult GuessPreset(string AVersionString, byte ABitrate, byte AQuality,
+    public static PresetGuessResult GuessPreset(string AVersionString, byte ABitrate, byte AQuality,
                 byte AEncodingMethod, byte ANoiseShaping, byte AStereoMode,
             byte AATHType, byte ALowpassDiv100)
     {
@@ -143,7 +143,7 @@ internal sealed class PresetGuesser
         return new PresetGuessResult(Result, ANonBitrate);
     }
 
-    private PresetGuessResult BestGuessTwoVersions(LameVersionGroup AGroup1, LameVersionGroup AGroup2, byte ABitrate,
+    private static PresetGuessResult BestGuessTwoVersions(LameVersionGroup AGroup1, LameVersionGroup AGroup2, byte ABitrate,
             byte AQuality, byte AEncodingMethod, byte ANoiseShaping, byte AStereoMode,
             byte AATHType, byte ALowpassDiv100)
     {

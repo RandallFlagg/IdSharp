@@ -262,7 +262,7 @@ public class MP3GainTagItems {
 
     #region Private methods
 
-    private string ConvertValueToString(string value, int position) {
+    private static string ConvertValueToString(string value, int position) {
 
         if (value == null)
         {
@@ -279,7 +279,7 @@ public class MP3GainTagItems {
         return parts[position];
     }
 
-    private short? ConvertValue(string value, int position) {
+    private static short? ConvertValue(string value, int position) {
 
         var part = ConvertValueToString(value, position);
 
@@ -298,7 +298,7 @@ public class MP3GainTagItems {
         return null;
     }
 
-    private string ConvertValue(short? value, bool includeSign) {
+    private static string ConvertValue(short? value, bool includeSign) {
 
         if (!value.HasValue)
         {
@@ -308,12 +308,12 @@ public class MP3GainTagItems {
         return value.Value.ToString((includeSign ? "+" : "") + "000;-000;");
     }
 
-    private string ConvertValue(short? value) {
+    private static string ConvertValue(short? value) {
 
         return ConvertValue(value, false);
     }
 
-    private decimal? ConvertToDecibels(short? value) {
+    private static decimal? ConvertToDecibels(short? value) {
 
         if (!value.HasValue)
         {
@@ -325,7 +325,7 @@ public class MP3GainTagItems {
         }
     }
 
-    private short? ConvertFromDecibels(decimal? value) {
+    private static short? ConvertFromDecibels(decimal? value) {
 
         if (!value.HasValue)
         {

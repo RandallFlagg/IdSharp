@@ -161,7 +161,7 @@ public class ReplayGainTagItems {
 
     #region Private methods
 
-    private decimal? ConvertValue(string value, string textToRemove) {
+    private static decimal? ConvertValue(string value, string textToRemove) {
 
         if (value == null)
         {
@@ -183,12 +183,12 @@ public class ReplayGainTagItems {
         return null;
     }
 
-    private decimal? ConvertValue(string value) {
+    private static decimal? ConvertValue(string value) {
 
         return ConvertValue(value, null);
     }
 
-    private string ConvertValue(decimal? value, string textToAdd) {
+    private static string ConvertValue(decimal? value, string textToAdd) {
 
         if (!value.HasValue)
         {
@@ -198,12 +198,12 @@ public class ReplayGainTagItems {
         return value.Value.ToString("#0.000000") + (textToAdd != null ? textToAdd : "");
     }
 
-    private string ConvertValue(decimal? value) {
+    private static string ConvertValue(decimal? value) {
 
         return ConvertValue(value, null);
     }
 
-    private decimal? ConvertToDecibels(decimal? value) {
+    private static decimal? ConvertToDecibels(decimal? value) {
 
         if (!value.HasValue)
         {
@@ -215,7 +215,7 @@ public class ReplayGainTagItems {
         }
     }
 
-    private decimal? ConvertFromDecibels(decimal? value) {
+    private static decimal? ConvertFromDecibels(decimal? value) {
 
         if (!value.HasValue)
         {
