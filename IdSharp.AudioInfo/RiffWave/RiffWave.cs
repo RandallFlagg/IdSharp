@@ -16,6 +16,7 @@ public class RiffWave : IAudioFile
     /// <param name="stream">The stream.</param>
     public RiffWave(Stream stream)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         ReadStream(stream);
     }
 

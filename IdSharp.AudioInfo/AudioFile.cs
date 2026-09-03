@@ -95,6 +95,7 @@ public static class AudioFile
     /// <param name="throwExceptionIfUnknown">if set to <c>true</c>, throws an exception if an unknown file extension is encountered; otherwise, unknown file extensions are not added to the list.</param>
     public static List<IAudioFile> GetList(string[] fileList, bool sort, bool throwExceptionIfUnknown)
     {
+        ArgumentNullException.ThrowIfNull(fileList, nameof(fileList));
         if (sort)
         {
             Array.Sort(fileList);
