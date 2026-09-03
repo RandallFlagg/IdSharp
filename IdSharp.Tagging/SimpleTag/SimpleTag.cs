@@ -210,7 +210,7 @@ public class SimpleTag : ISimpleTag
 
             if (!id3v2Found || string.IsNullOrEmpty(TrackNumber))
             {
-                TrackNumber = id3v1.TrackNumber.ToString(CultureInfo.InvariantCulture);
+                TrackNumber = id3v1.TrackNumber!.Value.ToString(CultureInfo.InvariantCulture);
             }
 
             if (!id3v2Found || string.IsNullOrEmpty(Comment))

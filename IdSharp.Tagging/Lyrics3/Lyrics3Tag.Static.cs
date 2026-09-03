@@ -70,7 +70,7 @@ public partial class Lyrics3Tag
         if (tagSize > 0)
         {
             var tagOffset = lyrics3.TagOffset.Value;
-            ByteUtils.ReplaceBytes(path, tagSize, new byte[0], tagOffset);
+            ByteUtils.ReplaceBytes(path, tagSize, Array.Empty<byte>(), tagOffset);
             return true;
         }
         else

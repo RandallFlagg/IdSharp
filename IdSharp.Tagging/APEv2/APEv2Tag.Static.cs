@@ -73,7 +73,7 @@ public partial class APEv2Tag
         var tagOffset = apev2.TagOffset;
         if (tagSize > 0)
         {
-            ByteUtils.ReplaceBytes(path, tagSize, new byte[0], tagOffset);
+            ByteUtils.ReplaceBytes(path, tagSize, Array.Empty<byte>(), tagOffset);
             return true;
         }
         else

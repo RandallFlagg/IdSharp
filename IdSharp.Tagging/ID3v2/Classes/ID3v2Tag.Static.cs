@@ -87,7 +87,7 @@ public partial class ID3v2Tag
         var tagSize = GetTagSize(path);
         if (tagSize > 0)
         {
-            ByteUtils.ReplaceBytes(path, tagSize, new byte[0]);
+            ByteUtils.ReplaceBytes(path, tagSize, Array.Empty<byte>());
             return true;
         }
         else

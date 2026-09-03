@@ -197,7 +197,7 @@ internal sealed class Commercial : Frame, ICommercial
     {
         if (_priceList.Count == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var frameData = new MemoryStream())
@@ -232,7 +232,7 @@ internal sealed class Commercial : Frame, ICommercial
             // No valid price items
             if (priceString == string.Empty)
             {
-                return new byte[0];
+                return Array.Empty<byte>();
             }
 
             frameData.Write(ByteUtils.ISO88591GetBytes(priceString));

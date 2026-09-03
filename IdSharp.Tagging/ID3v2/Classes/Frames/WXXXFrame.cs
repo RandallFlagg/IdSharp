@@ -79,7 +79,7 @@ internal sealed class WXXXFrame : Frame, IWXXXFrame
     {
         if (string.IsNullOrEmpty(Value))
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         byte[] descriptionData;

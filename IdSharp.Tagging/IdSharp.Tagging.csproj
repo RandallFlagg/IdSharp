@@ -8,6 +8,10 @@
     <RootNamespace>IdSharp.Tagging</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Label="FIX and DEL">
+    <NoWarn>CA1805</NoWarn>
+  </PropertyGroup>
+    
   <PropertyGroup Label="nuget">
     <PackageId>IdSharp.Tagging</PackageId>
     <Title>IdSharp Tagging</Title>

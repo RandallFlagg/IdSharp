@@ -62,7 +62,7 @@ internal sealed class UniqueFileIdentifier : Frame, IUniqueFileIdentifier
     {
         if (_identifier == null || _identifier.Length == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var frameData = new MemoryStream())

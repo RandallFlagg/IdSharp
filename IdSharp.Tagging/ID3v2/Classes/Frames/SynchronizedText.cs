@@ -171,7 +171,7 @@ internal sealed class SynchronizedText : Frame, ISynchronizedText
     {
         if (Items.Count == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         if (TextEncoding == EncodingType.ISO88591)

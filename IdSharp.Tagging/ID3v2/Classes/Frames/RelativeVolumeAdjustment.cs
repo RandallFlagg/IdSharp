@@ -409,7 +409,7 @@ internal sealed class RelativeVolumeAdjustment : Frame, IRelativeVolumeAdjustmen
     public override byte[] GetBytes(ID3v2TagVersion tagVersion)
     {
         // TODO
-        return new byte[0];
+        return Array.Empty<byte>();
         // throw new NotImplementedException();
 
         /*

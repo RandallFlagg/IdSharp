@@ -371,7 +371,7 @@ internal sealed class FrameHeader : IFrameHeader
 
         if (frameID == null)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         var frameIDBytes = ByteUtils.ISO88591GetBytes(frameID);

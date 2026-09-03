@@ -61,7 +61,7 @@ internal sealed class PositionSynchronization : Frame, IPositionSynchronization
     {
         if (Position == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         throw new NotImplementedException();

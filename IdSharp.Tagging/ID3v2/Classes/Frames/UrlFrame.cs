@@ -53,7 +53,7 @@ internal sealed class UrlFrame : Frame, IUrlFrame
     {
         if (string.IsNullOrEmpty(_value))
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         using (var stream = new MemoryStream())

@@ -198,7 +198,7 @@ internal sealed class Comments : Frame, IComments
     {
         if (string.IsNullOrEmpty(Value))
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         if (LanguageCode == null || LanguageCode.Length != 3)

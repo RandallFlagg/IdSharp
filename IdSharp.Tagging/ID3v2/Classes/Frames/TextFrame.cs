@@ -87,7 +87,7 @@ internal sealed class TextFrame : Frame, ITextFrame
     {
         if (string.IsNullOrEmpty(Value))
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         byte[] valueData;

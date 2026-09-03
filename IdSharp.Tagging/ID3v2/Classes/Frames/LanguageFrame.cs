@@ -101,7 +101,7 @@ internal sealed class LanguageFrame : Frame, ILanguageFrame
     {
         if (Items.Count == 0)
         {
-            return new byte[0];
+            return Array.Empty<byte>();
         }
 
         // Set TextEncoding to Unicode/UTF8 if required
