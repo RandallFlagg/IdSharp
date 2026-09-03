@@ -32,7 +32,9 @@ public static class Amazon
         }
 
         // remove everything after parentheses
+#pragma warning disable CA1307 // IndexOf(char) has no StringComparison overload in .NET
         var parenIndex = value.IndexOf('(');
+#pragma warning restore CA1307
         if (parenIndex > 0)
         {
             value = value.Substring(0, parenIndex);
@@ -78,16 +80,16 @@ public static class Amazon
         // remove common words
         value = value.ToUpperInvariant();
 
-        value = value.Replace(" THE ", " ");
-        value = value.Replace(" A ", " ");
-        value = value.Replace(" OF ", " ");
-        value = value.Replace(" AND ", " ");
-        value = value.Replace(" AN ", " ");
-        value = value.Replace(" OST ", " ");
-        value = value.Replace(" IN ", " ");
-        value = value.Replace(" DISC ", " ");
-        value = value.Replace(" DISK ", " ");
-        value = value.Replace(" CD ", " ");
+        value = value.Replace(" THE ", " ", StringComparison.Ordinal);
+        value = value.Replace(" A ", " ", StringComparison.Ordinal);
+        value = value.Replace(" OF ", " ", StringComparison.Ordinal);
+        value = value.Replace(" AND ", " ", StringComparison.Ordinal);
+        value = value.Replace(" AN ", " ", StringComparison.Ordinal);
+        value = value.Replace(" OST ", " ", StringComparison.Ordinal);
+        value = value.Replace(" IN ", " ", StringComparison.Ordinal);
+        value = value.Replace(" DISC ", " ", StringComparison.Ordinal);
+        value = value.Replace(" DISK ", " ", StringComparison.Ordinal);
+        value = value.Replace(" CD ", " ", StringComparison.Ordinal);
 
         value = value.Trim();
 

@@ -148,7 +148,7 @@ internal sealed class Comments : Frame, IComments
                 {
                     if (invalidFrame)
                     {
-                        if (languageCode.Contains("\0"))
+                        if (languageCode.Contains("\0", StringComparison.Ordinal))
                         {
                             // forget it, too messed up.
                             Value = "";

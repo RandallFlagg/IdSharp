@@ -314,7 +314,7 @@ internal static class Http
             AddField(getString, item);
         }
 
-        if (!requestUriString.Contains("?"))
+        if (!requestUriString.Contains("?", StringComparison.Ordinal))
         {
             getString.Insert(0, '?');
         }
