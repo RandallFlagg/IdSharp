@@ -1,8 +1,9 @@
 using System;
 using System.ComponentModel;
+using System.Globalization;
 
 
-namespace IdSharp.Tagging.APEv2; 
+namespace IdSharp.Tagging.APEv2;
 
 /// <summary>
 /// A collection of tag items related to ReplayGain
@@ -195,7 +196,7 @@ public class ReplayGainTagItems {
             return null;
         }
 
-        return value.Value.ToString("#0.000000") + (textToAdd != null ? textToAdd : "");
+        return value.Value.ToString("#0.000000", CultureInfo.InvariantCulture) + (textToAdd != null ? textToAdd : "");
     }
 
     private static string ConvertValue(decimal? value) {

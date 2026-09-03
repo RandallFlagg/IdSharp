@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using IdSharp.Common.Utils;
 using IdSharp.Tagging.ID3v2.Extensions;
@@ -236,7 +237,7 @@ internal sealed class Commercial : Frame, ICommercial
 
             frameData.Write(ByteUtils.ISO88591GetBytes(priceString));
             frameData.WriteByte(0); // terminator
-            frameData.Write(ByteUtils.ISO88591GetBytes(_validUntil.ToString("yyyyMMdd")));
+            frameData.Write(ByteUtils.ISO88591GetBytes(_validUntil.ToString("yyyyMMdd", CultureInfo.InvariantCulture)));
             frameData.Write(ByteUtils.ISO88591GetBytes(_contactUrl));
             frameData.WriteByte(0); // terminator
             frameData.WriteByte((byte)_receivedAs);

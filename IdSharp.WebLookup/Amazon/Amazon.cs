@@ -148,7 +148,7 @@ public static class Amazon
             postData.Add(new PostData("Keywords", keywords));
         }
 
-        postData.Add(new PostData("ItemPage", page.ToString()));
+        postData.Add(new PostData("ItemPage", page.ToString(CultureInfo.InvariantCulture)));
         postData.Add(new PostData("Sort", sort));
         postData.Add(new PostData("Timestamp", $"{DateTime.UtcNow:yyyy-MM-dd}T{DateTime.UtcNow:HH:mm:ss}Z"));
 
@@ -313,7 +313,7 @@ public static class Amazon
                     }
                     else
                     {
-                        getString.Append($"%{(int)c:X2}");
+                        getString.Append("%" + ((int)c).ToString("X2", CultureInfo.InvariantCulture));
                     }
                 }
             }
