@@ -431,7 +431,7 @@ public static class LanguageHelper
     {
         #region <<< Language code / English description dictionary
 
-        Languages = new Dictionary<string, string>();
+        Languages = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         Languages.Add("aar", "Afar");
         Languages.Add("abk", "Abkhazian");
         Languages.Add("ace", "Achinese");

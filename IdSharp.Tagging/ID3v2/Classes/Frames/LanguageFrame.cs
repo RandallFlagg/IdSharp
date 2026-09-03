@@ -69,15 +69,15 @@ internal sealed class LanguageFrame : Frame, ILanguageFrame
             var languageCode = ID3v2Utils.ReadString(TextEncoding, stream, ref bytesLeft);
             if (languageCode.Length != 3)
             {
-                if (languageCode.ToLower(CultureInfo.InvariantCulture) == "english" || languageCode.ToLower(CultureInfo.InvariantCulture) == "en")
+                if (languageCode.ToUpperInvariant() == "ENGLISH" || languageCode.ToUpperInvariant() == "EN")
                 {
-                    Items.AddNew().LanguageCode = "eng";
+                    Items.AddNew().LanguageCode = "ENG";
                 }
                 else
                 {
                     foreach (var kvp in LanguageHelper.Languages)
                     {
-                        if (kvp.Value.ToLower(CultureInfo.InvariantCulture) == languageCode.ToLower(CultureInfo.InvariantCulture))
+                        if (kvp.Value.ToUpperInvariant() == languageCode.ToUpperInvariant())
                         {
                             Items.AddNew().LanguageCode = kvp.Key;
                             break;

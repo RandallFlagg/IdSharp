@@ -8,6 +8,10 @@
     <RootNamespace>IdSharp.AudioInfo</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Label="FIX and DEL">
+    <NoWarn>CA1303</NoWarn>
+  </PropertyGroup>
+    
   <PropertyGroup Label="nuget">
     <PackageId>IdSharp.AudioInfo</PackageId>
     <Title>IdSharp Audio Info</Title>

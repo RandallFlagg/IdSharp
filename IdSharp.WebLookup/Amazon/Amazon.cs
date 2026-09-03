@@ -76,22 +76,22 @@ public static class Amazon
         }
 
         // remove common words
-        value = value.ToLower(CultureInfo.InvariantCulture);
+        value = value.ToUpperInvariant();
 
-        value = value.Replace(" the ", " ");
-        value = value.Replace(" a ", " ");
-        value = value.Replace(" of ", " ");
-        value = value.Replace(" and ", " ");
-        value = value.Replace(" an ", " ");
-        value = value.Replace(" ost ", " ");
-        value = value.Replace(" in ", " ");
-        value = value.Replace(" disc ", " ");
-        value = value.Replace(" disk ", " ");
-        value = value.Replace(" cd ", " ");
+        value = value.Replace(" THE ", " ");
+        value = value.Replace(" A ", " ");
+        value = value.Replace(" OF ", " ");
+        value = value.Replace(" AND ", " ");
+        value = value.Replace(" AN ", " ");
+        value = value.Replace(" OST ", " ");
+        value = value.Replace(" IN ", " ");
+        value = value.Replace(" DISC ", " ");
+        value = value.Replace(" DISK ", " ");
+        value = value.Replace(" CD ", " ");
 
         value = value.Trim();
 
-        if (value == "various")
+        if (value == "VARIOUS")
         {
             value = string.Empty;
         }

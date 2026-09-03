@@ -18,7 +18,7 @@ internal sealed class LanguageItem : ILanguageItem
             _languageCode = value;
 
             string languageDisplay;
-            if (LanguageHelper.Languages.TryGetValue(_languageCode.ToLower(CultureInfo.InvariantCulture), out languageDisplay))
+            if (LanguageHelper.Languages.TryGetValue(_languageCode.ToUpperInvariant(), out languageDisplay))
             {
                 LanguageDisplay = languageDisplay;
             }
