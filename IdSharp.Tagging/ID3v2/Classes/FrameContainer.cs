@@ -200,9 +200,7 @@ public abstract partial class FrameContainer : IFrameContainer
         {
             if (m_Genre.Value.StartsWith("("))
             {
-#pragma warning disable CA1307 // IndexOf(char) has no StringComparison overload in .NET
-                var closeIndex = m_Genre.Value.IndexOf(')');
-#pragma warning restore CA1307
+                var closeIndex = m_Genre.Value.IndexOf(')', StringComparison.Ordinal);
                 if (closeIndex != -1)
                 {
                     if (closeIndex != m_Genre.Value.Length - 1)
