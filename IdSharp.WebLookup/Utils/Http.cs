@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -348,7 +349,7 @@ internal static class Http
                 }
                 else
                 {
-                    value.Append($"%{(int)c:X2}");
+                    value.Append("%" + ((int)c).ToString("X2", CultureInfo.InvariantCulture));
                 }
             }
         }
@@ -356,11 +357,11 @@ internal static class Http
 
         if (postString.Length == 0)
         {
-            postString.AppendFormat($"{postData.Field}={value}");
+            postString.AppendFormat(CultureInfo.InvariantCulture, "{0}={1}", postData.Field, value);
         }
         else
         {
-            postString.AppendFormat($"&{postData.Field}={value}");
+            postString.AppendFormat(CultureInfo.InvariantCulture, "&{0}={1}", postData.Field, value);
         }
     }
 

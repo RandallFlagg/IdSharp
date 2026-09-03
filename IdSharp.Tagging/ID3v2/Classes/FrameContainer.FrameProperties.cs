@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using IdSharp.Tagging.ID3v2.Frames;
 
 namespace IdSharp.Tagging.ID3v2;
@@ -107,7 +108,7 @@ partial class FrameContainer
                     throw new ArgumentOutOfRangeException(nameof(value), value, "Value cannot be less than 0");
                 }
 
-                m_PlaylistDelayMilliseconds.Value = value.Value.ToString();
+                m_PlaylistDelayMilliseconds.Value = value.Value.ToString(CultureInfo.InvariantCulture);
             }
         }
     }
@@ -254,7 +255,7 @@ partial class FrameContainer
                     throw new ArgumentOutOfRangeException(nameof(value), value, "Value cannot be less than 0");
                 }
 
-                m_LengthMilliseconds.Value = value.Value.ToString();
+                m_LengthMilliseconds.Value = value.Value.ToString(CultureInfo.InvariantCulture);
             }
         }
     }
@@ -432,7 +433,7 @@ partial class FrameContainer
                     throw new ArgumentOutOfRangeException(nameof(value), value, "Value cannot be less than 0");
                 }
 
-                m_FileSizeExcludingTag.Value = value.Value.ToString();
+                m_FileSizeExcludingTag.Value = value.Value.ToString(CultureInfo.InvariantCulture);
             }
         }
     }

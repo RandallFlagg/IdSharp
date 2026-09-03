@@ -1,3 +1,4 @@
+using System.Globalization;
 using IdSharp.AudioInfo.Mpeg.Mpeg.Inspection;
 
 namespace IdSharp.AudioInfo.Mpeg.Inspection;
@@ -206,7 +207,7 @@ public sealed class DescriptiveLameTagReader
 
         if (preset >= 8 && preset <= 320)
         {
-            result = preset.ToString();
+            result = preset.ToString(CultureInfo.InvariantCulture);
             if (_basicReader.EncodingMethod == 1)
             {
                 result = "cbr " + result;

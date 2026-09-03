@@ -305,7 +305,7 @@ public class MP3GainTagItems {
             return null;
         }
 
-        return value.Value.ToString((includeSign ? "+" : "") + "000;-000;");
+        return value.Value.ToString((includeSign ? "+" : "") + "000;-000;", CultureInfo.InvariantCulture);
     }
 
     private static string ConvertValue(short? value) {
