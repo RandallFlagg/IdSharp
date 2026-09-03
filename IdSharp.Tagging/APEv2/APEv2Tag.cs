@@ -150,6 +150,7 @@ public partial class APEv2Tag : IAPEv2Tag
     /// <param name="stream">The stream to read from.</param>
     public void Read(Stream stream)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         Read(stream, readElements: true);
     }
 

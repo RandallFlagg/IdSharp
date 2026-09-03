@@ -196,6 +196,7 @@ public class VorbisComment : IVorbisComment
     /// <param name="stream">The stream.</param>
     public void Read(Stream stream)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         ReadTagInternal(stream);
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using IdSharp.Common.Utils;
 
@@ -11,6 +12,7 @@ public partial class ID3v2Tag
     /// <param name="stream">The stream.</param>
     public static int GetTagSize(Stream stream)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         try
         {
             if (stream.Length >= 16)

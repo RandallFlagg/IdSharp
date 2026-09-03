@@ -33,6 +33,7 @@ public static class StreamUtils
     /// <param name="bytesLeft">The number of bytes left.</param>
     public static byte Read1(this Stream stream, ref int bytesLeft)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         if (bytesLeft > 0)
         {
             bytesLeft--;
@@ -52,6 +53,7 @@ public static class StreamUtils
     /// <param name="count">The count.</param>
     public static byte[] Read(this Stream stream, int count)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         var buffer = new byte[count];
         if (stream.Read(buffer, 0, count) != count)
         {
@@ -70,6 +72,7 @@ public static class StreamUtils
     /// <param name="bytesLeft">The number of bytes left.</param>
     public static byte[] Read(this Stream stream, int count, ref int bytesLeft)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         if (bytesLeft < count)
         {
             var msg = $"Attempted to read past the end of the frame at position {stream.Position}";
@@ -172,6 +175,8 @@ public static class StreamUtils
     /// <param name="byteArray">The byte array.</param>
     public static void Write(this Stream stream, byte[] byteArray)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
+        ArgumentNullException.ThrowIfNull(byteArray, nameof(byteArray));
         stream.Write(byteArray, 0, byteArray.Length);
     }
 
@@ -182,6 +187,7 @@ public static class StreamUtils
     /// <param name="bytesLeft">The number of bytes left.</param>
     public static short ReadInt16(this Stream stream, ref int bytesLeft)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         if (bytesLeft < 2)
         {
             var msg = $"Attempted to read past the end of the stream at position {stream.Position}";
@@ -202,6 +208,7 @@ public static class StreamUtils
     /// <returns></returns>
     public static void WriteISO88591(this Stream stream, string value)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         var bytes = ByteUtils.ISO88591GetBytes(value);
         stream.Write(bytes);
     }

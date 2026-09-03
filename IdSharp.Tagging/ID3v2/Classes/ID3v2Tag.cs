@@ -251,6 +251,7 @@ public partial class ID3v2Tag : FrameContainer, IID3v2Tag
     /// <param name="stream">The stream to read from.</param>
     public void Read(Stream stream)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         // Check for 'ID3' marker
         var identifier = stream.Read(3);
         if (!(identifier[0] == 0x49 && identifier[1] == 0x44 && identifier[2] == 0x33))

@@ -217,6 +217,7 @@ public partial class ID3v1Tag : IID3v1Tag
     /// <param name="stream">The stream.</param>
     public void Read(Stream stream)
     {
+        ArgumentNullException.ThrowIfNull(stream, nameof(stream));
         if (stream.Length >= 128)
         {
             stream.Seek(-128, SeekOrigin.End);
