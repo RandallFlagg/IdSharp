@@ -32,9 +32,7 @@ public static class Amazon
         }
 
         // remove everything after parentheses
-#pragma warning disable CA1307 // IndexOf(char) has no StringComparison overload in .NET
-        var parenIndex = value.IndexOf('(');
-#pragma warning restore CA1307
+        var parenIndex = value.IndexOf('(', StringComparison.Ordinal);
         if (parenIndex > 0)
         {
             value = value.Substring(0, parenIndex);
