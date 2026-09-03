@@ -24,38 +24,38 @@ public static class AudioFile
             throw new ArgumentNullException(nameof(path));
         }
 
-        var ext = Path.GetExtension(path).ToLower(CultureInfo.InvariantCulture);
+        var ext = Path.GetExtension(path).ToUpperInvariant();
         IAudioFile audioFile = null;
 
-        if (ext == ".mp3" || ext == ".mp2")
+        if (ext == ".MP3" || ext == ".MP2")
         {
             audioFile = new TMpeg(path, false);
         }
-        else if (ext == ".ogg")
+        else if (ext == ".OGG")
         {
             audioFile = new OggVorbis(path);
         }
-        else if (ext == ".flac" || ext == ".fla")
+        else if (ext == ".FLAC" || ext == ".FLA")
         {
             audioFile = new Flac(path);
         }
-        else if (ext == ".mpc" || ext == ".mpp" || ext == ".mp+")
+        else if (ext == ".MPC" || ext == ".MPP" || ext == ".MP+")
         {
             audioFile = new Musepack(path);
         }
-        else if (ext == ".shn")
+        else if (ext == ".SHN")
         {
             audioFile = new Shorten(path);
         }
-        else if (ext == ".ape" || ext == ".mac")
+        else if (ext == ".APE" || ext == ".MAC")
         {
             audioFile = new MonkeysAudio(path);
         }
-        else if (ext == ".m4a")
+        else if (ext == ".M4A")
         {
             audioFile = new Mpeg4(path);
         }
-        else if (ext == ".ofr")
+        else if (ext == ".OFR")
         {
             audioFile = new OptimFrog(path);
         }

@@ -4,6 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>IdSharp.WebLookup</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup Label="FIX and DEL">
+    <!-- CA1056 Breaks public API -->
+<!--    <NoWarn>CA1056</NoWarn>-->
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp" />
   </ItemGroup>
