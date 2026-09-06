@@ -1,0 +1,63 @@
+name: NuGet Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  build-test-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Setup NuGet Trusted Publishing
+        uses: nuget/setup-nuget@v2
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release --verbosity normal
+
+      - name: Test
+        run: dotnet test --no-build --configuration Release --verbosity normal
+
+      - name: Pack NuGet packages
+        run: |
+          dotnet pack IdSharp.Common/IdSharp.Common.csproj --no-build --configuration Release --output ./nupkg
+          dotnet pack IdSharp.AudioInfo/IdSharp.AudioInfo.csproj --no-build --configuration Release --output ./nupkg
+          dotnet pack IdSharp.Tagging/IdSharp.Tagging.csproj --no-build --configuration Release --output ./nupkg
+          dotnet pack IdSharp.WebLookup/IdSharp.WebLookup.csproj --no-build --configuration Release --output ./nupkg
+
+      - name: Extract version from package
+        id: get-version
+        run: |
+          VERSION=$(ls ./nupkg/IdSharp.*.nupkg | head -1 | sed 's/.*IdSharp\.[^.]*\.\(.*\)\.nupkg/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          TAG="v${{ steps.get-version.outputs.version }}"
+          if ! git rev-parse "$TAG" >/dev/null 2>&1; then
+            git tag "$TAG"
+            git push origin "$TAG"
+          else
+            echo "Tag $TAG already exists, skipping"
+          fi
+
+      - name: Push to NuGet.org
+        run: dotnet nuget push ./nupkg/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --trust-optional
